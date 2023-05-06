@@ -7,22 +7,32 @@ function PatientSearch() {
     event.preventDefault();
     const { target } = event;
     const healthCardId = target.healthCardId.value;
+    if (!healthCardId) {
+      alert("Please enter a health card ID");
+      return;
+    }
     const response = await fetch(`http://localhost:8080/api/v1/patients/${healthCardId}`);
     const { data } = await response.json();
     if(data) {
       history.push(`/home/patient-options/${healthCardId}`);
     }
+    else
+    {
+      alert("Patient not found!");
+    }
   }
 
   return (
-    <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={search}>
-      <Input label="Health Card ID" field="healthCardId" />
-      <div className="flex items-center justify-between">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-          Load
-        </button>
-      </div>
-    </form>
+    <div className="flex flex-col">
+      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={search}>
+        <Input label="Health Card ID" field="healthCardId" />
+        <div className="flex items-center justify-between">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            Load
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 

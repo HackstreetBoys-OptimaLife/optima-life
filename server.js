@@ -9,8 +9,6 @@ if(process.env.NODE_ENV !== 'test') {
   connectDB();
 }
 
-const registrations = require('./routes/registrations');
-const authentications = require('./routes/authentications');
 const patients = require('./routes/patients');
 
 const corsOptions = {
@@ -25,8 +23,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.static('frontend'))
 
-app.use('/api/v1/registration', registrations);
-app.use('/api/v1/authentication', authentications);
 app.use('/api/v1/patients', patients);
 
 module.exports = app;

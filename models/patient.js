@@ -17,6 +17,10 @@ const PatientSchema = new mongoose.Schema(
       required: [true, `{PATH} is required`],
       maxlength: [50, '{PATH} can not be more than 50 characters']
     },
+    token: {
+      type: String,
+      maxlength: [4, '{PATH} can not be more than 50 characters']
+    },
     createdAt: {
       type: Date,
       default: Date.now

@@ -4,6 +4,7 @@ const {
   postRecord,
   postPatient,
   getPatientByHealthCardId,
+  getPatientByToken,
 } = require('../controllers/patients');
 
 const router = express.Router();
@@ -15,7 +16,8 @@ router
 
 router
   .route('/')
-  .post(postPatient);
+  .post(postPatient)
+  .get(getPatientByToken)
 
 router
   .route('/:id')

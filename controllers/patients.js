@@ -14,6 +14,20 @@ exports.getPatientByHealthCardId = async (req, res, _next) => {
   });
 };
 
+exports.getPatientByToken = async (req, res, _next) => {
+  const { token } = req.query;
+
+  console.log(token);
+  const patient = await Patient.findOne(
+    { token: token },
+  );
+
+  res.status(200).json({
+    success: !!patient,
+    data: patient
+  });
+};
+
 exports.getRecordsByPatient = async (req, res, _next) => {
   const { patientId } = req.params;
   const records = await Record.findOne(
