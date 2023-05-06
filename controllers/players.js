@@ -1,7 +1,7 @@
 const Player = require('../models/player');
 
 exports.getPlayerByUuid = async (req, res, _next) => {
-  const { uuid } = req.params;
+  const { patientId } = req.params;
 
   try {
     const player = await Player.findOne({ uuid });
@@ -27,15 +27,15 @@ exports.getPlayerByUuid = async (req, res, _next) => {
 };
 
 exports.createPlayer = async (req, res, _next) => {
-  const { uuid } = req.body;
+  const { patientId } = req.body;
 
   try {
-    const existingPlayer = await Player.findOne({ uuid });
+    const existingPlayer = await Player.findOne({ patientId  });
 
     if (existingPlayer) {
       return res.status(400).json({
         success: false,
-        message: 'Player with the given UUID already exists',
+        message: 'Player with the given already exists',
       });
     }
 

@@ -2,55 +2,47 @@ const mongoose = require('mongoose');
 
 const PlayerSchema = new mongoose.Schema(
     {
-        //userid for health card and otp 
-     uuid: {
-        type: String,
-        required: [true, `{PATH} is required`],
-        maxlength: [50, '{PATH} can not be more than 50 characters']
+     //userid for health card and otp 
+      patientId: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Patient',
       },
       score: {
-        type: Number
+        type: Number,
+        default:0
       },
       emStatus: {
-        type: Number
+        type: Number,
+        default:0
       },
       mhStatus: {
-        type: Number
+        type: Number,
+        default:0
       },
       ehStatus: {
-        type: Number
+        type: Number,
+        default:0
       },
       shStatus: {
-        type: Number
+        type: Number,
+        default:0
       },
       hhStatus:{
-        type: Number
+        type: Number,
+        default:0
       },
       averagePoints:{
-        type: Number
+        type: Number,
+        default:0
       },
       bankPoints:{
-        type: Number
+        type: Number,
+        default:0
       },
       redeemPoints:{
-        type: Number
+        type: Number,
+        default:0
       },
-      sessions: [
-        {
-          sessionData: {
-            uuid: { type: String},
-            overall: { type: Number },
-            emStatus: { type: Number },
-            mhStatus: { type: Number },
-            ehStatus: { type: Number },
-            shStatus: { type: Number },
-            hhStatus: { type: Number },
-            averagePoints: { type: Number },
-            bankPoints: { type: Number }
-          },
-          createdAt: { type: Date, default: Date.now },
-        },
-      ],
       createdAt: {
         type: Date,
         default: Date.now

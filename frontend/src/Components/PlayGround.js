@@ -55,6 +55,7 @@ export default function PlayGround() {
     console.log("EP: " + emotionalPoints);
     console.log("HP: " + healthPoints);
     console.log("SP: " + socialPoints);
+    
   };
 
   return (
@@ -88,7 +89,7 @@ export default function PlayGround() {
           {data.map((d) =>
             count === d.id ? (
               <div className="flex items-center justify-end flex-row">
-                <div className="flex flex-row-reverse" key={d.id}>
+                <div className="flex  flex-row-reverse" key={d.id}>
                   <img
                     alt=""
                     className="flex items-center justify-center h-10 w-10 rounded-full"
