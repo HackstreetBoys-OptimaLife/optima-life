@@ -1,10 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from 'react-router-dom';
 
 const HomeScreen = () => {
-
-    const [otp, setOTP] = useState('');
+  const history = useHistory();
+  const [otp, setOTP] = useState('');
 
   const handleNumberClick = (number) => {
     if (otp.length < 4) {
@@ -16,8 +17,16 @@ const HomeScreen = () => {
     setOTP(otp.slice(0, -1));
   };
 
-  const handleDoneClick = () => {
-    console.log(otp);
+  const handleDoneClick = async () => {
+    const response = await fetch(`http://localhost:8080/api/v1/patients?token=${otp}`);
+    const { data } = await response.json();
+    if(data) {
+      history.push(`/game/${data.healthCardId}`);
+    }
+    else
+    {
+      alert("Invalid PIN");
+    }
   }
 
     return(
@@ -64,14 +73,13 @@ const HomeScreen = () => {
                         >
                             0
                         </button>
-                        <Link
-                            to="/game/begin"
+                        <a
                             className="flex items-center justify-center w-36 h-36 text-2xl border border-gray-400 rounded bg-gray-900 text-white"
                             style={{opacity:"0.7"}}
                             onClick={handleDoneClick}
                         >
                             &#10003;
-                        </Link>
+                        </a>
                         </div>
                     </div>
                 </div>

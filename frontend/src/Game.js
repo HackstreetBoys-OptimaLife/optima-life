@@ -1,32 +1,24 @@
 import { useState, useEffect } from 'react';
 import './input.css';
-import HomeScreen from './HomeScreen';
-import FinalScreen from './FinalScreen';
 import PlayGround from './Components/PlayGround';
+import { useParams } from 'react-router-dom';
 
 function Game() {
-  const [contacts, setContacts] = useState([]);
+  const { id: healthCardId } = useParams();
+  const [patient, setPatient] = useState(null);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('http://localhost:8080/api/v1/records');
-        const { data } = await response.json();
-        setContacts(data);
-        console.log(data);
-      } catch (error) {
-        console.log('Error fetching data: ', error);
-      }
+    async function fetchPatient() {
+      const response = await fetch(`http://localhost:8080/api/v1/patients/${healthCardId}`);
+      const { data } = await response.json();
+      setPatient(data);
     }
-    fetchData();
-
-    return () => console.log("unmounting...");
-  }, []);
+    fetchPatient();
+  }, [healthCardId]);
 
   return (
     <div className="h-screen bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-amber-100 via-amber-100 to-gray-500">
-      {/* { contacts.map(contact => <div className="font-bold p-4" key={contact.id}>{contact.name}</div>) } */}
-      <PlayGround />
+      <PlayGround patient={patient} />
     </div>
   );
 }

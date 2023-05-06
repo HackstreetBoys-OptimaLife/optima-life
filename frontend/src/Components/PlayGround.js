@@ -1,11 +1,11 @@
 import Message from "./Message";
 import videoBg from "../assets/in-the-early-morning-forest-moewalls.com.mp4";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import data from "../questions.json";
 import NextQuestion from "./NextQuestion";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-export default function PlayGround() {
+export default function PlayGround({ patient }) {
   const [count, setCount] = useState(1);
   const [points, setPoints] = useState(0);
   const [rightAnswer, setRightAnswer] = useState("");
@@ -13,6 +13,8 @@ export default function PlayGround() {
   const [mentalPoints, setMentalPoints] = useState(0);
   const [socialPoints, setSocialPoints] = useState(0);
   const [healthPoints, setHealthPoints] = useState(0);
+
+  console.log(patient);
 
   const setStatPoints = (point, category) => {
     switch (category) {
