@@ -1,7 +1,4 @@
 import Message from "./Message";
-import FinalScreen from "../FinalScreen";
-import useSound from "use-sound";
-import forestMusic from "../assets/mixkit-birds-in-forest-loop-1239.wav";
 import videoBg from "../assets/in-the-early-morning-forest-moewalls.com.mp4";
 import { useState } from "react";
 
@@ -10,7 +7,6 @@ import NextQuestion from "./NextQuestion";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function PlayGround() {
-  const [play] = useSound(forestMusic, { volume: 0.25 });
   const [count, setCount] = useState(1);
   const [points, setPoints] = useState(0);
   const [rightAnswer, setRightAnswer] = useState("");
@@ -64,6 +60,11 @@ export default function PlayGround() {
 
   return (
     <>
+      <h1
+        className="text-end text-4xl z-15 w-auto px-20 pt-10 font-bold font text-gray-900"
+      >
+        SCORE: {points}
+      </h1>
       <div className="mx-auto max-w-7xl py-5 pt-8">
         <div
           className="absolute inset-0 z-0 flex flex-col m-auto items-center max-w-7xl
@@ -79,7 +80,7 @@ export default function PlayGround() {
         </div>
       </div>
 
-      <div className="relative z-10 h-[43rem] justify-center flex flex-col items-center m-[4.5rem]">
+      <div className="relative z-10 h-[43rem] justify-center flex flex-col items-center">
         <div className="p-8 space-y-2 relative flex-grow w-[80rem]">
           {data.map((d) =>
             count === d.id ? <Message text={d.question} /> : null
