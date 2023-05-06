@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function Test() {
+function GenerateToken() {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
@@ -26,4 +26,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default GenerateToken;
