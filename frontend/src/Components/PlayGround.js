@@ -4,7 +4,6 @@ import useSound from "use-sound";
 import forestMusic from "../assets/mixkit-birds-in-forest-loop-1239.wav";
 import videoBg from "../assets/in-the-early-morning-forest-moewalls.com.mp4";
 import { useState } from "react";
-
 import data from "../questions.json";
 import NextQuestion from "./NextQuestion";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
