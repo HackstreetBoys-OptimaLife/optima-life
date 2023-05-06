@@ -1,10 +1,13 @@
 import Message from "./Message";
+import FinalScreen from "../FinalScreen";
 import useSound from "use-sound";
 import forestMusic from "../assets/mixkit-birds-in-forest-loop-1239.wav";
 import videoBg from "../assets/in-the-early-morning-forest-moewalls.com.mp4";
 import { useState } from "react";
 
 import data from "../questions.json";
+import NextQuestion from "./NextQuestion";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function PlayGround() {
   const [play] = useSound(forestMusic, { volume: 0.25 });
@@ -30,6 +33,9 @@ export default function PlayGround() {
       case "HH":
         setHealthPoints(healthPoints + point);
         break;
+      case "NA":
+        setCount(15);
+        break;
       default:
         break;
     }
@@ -48,7 +54,7 @@ export default function PlayGround() {
     }
   };
 
-  const test = () => {
+  const test = async () => {
     console.log("P: " + points);
     console.log("MP: " + mentalPoints);
     console.log("EP: " + emotionalPoints);
@@ -59,34 +65,30 @@ export default function PlayGround() {
   return (
     <>
       <div className="mx-auto max-w-7xl py-5 pt-8">
-        <div className="absolute z-20 ">
-          <button className="p-4 text-gray-300" onClick={play}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
-              />
-            </svg>
-          </button>
-          <div className="p-8 space-y-2 relative h-[38rem] overflow-scroll overflow-x-auto overflow-y-auto ">
-            {data.map((d) =>
-              count === d.id ? <Message text={d.question} /> : null
-            )}
+        <div
+          className="absolute inset-0 z-0 flex flex-col m-auto items-center max-w-7xl
+        h-[43rem] overflow-hidden rounded-3xl border-2 border-black px-4 border-b-4 "
+        >
+          <video
+            className="absolute z-10 w-auto 
+            min-w-full min-h-full opacity-90"
+            src={videoBg}
+            autoPlay="true"
+            loop="true"
+          />
+        </div>
+      </div>
 
-            {data.map((d) =>
-              count === d.id ? (
-                <div
-                  key={d.id}
-                  className="flex items-center justify-start flex-row-reverse"
-                >
+      <div className="relative z-10 h-[43rem] justify-center flex flex-col items-center m-[4.5rem]">
+        <div className="p-8 space-y-2 relative flex-grow w-[80rem]">
+          {data.map((d) =>
+            count === d.id ? <Message text={d.question} /> : null
+          )}
+
+          {data.map((d) =>
+            count === d.id ? (
+              <div className="flex items-center justify-end flex-row">
+                <div className="flex flex-row-reverse" key={d.id}>
                   <img
                     alt=""
                     className="flex items-center justify-center h-10 w-10 rounded-full"
@@ -97,7 +99,6 @@ export default function PlayGround() {
                       <button
                         className="bg-green-500 hover:bg-green-400 text-white font-bold py-10 px-24 border-b-4 border-green-700 hover:border-green-500 rounded-full"
                         onClick={() => {
-                          // setCount(count + 1);
                           checkAnswer(d, d.options[0]);
                         }}
                       >
@@ -114,22 +115,34 @@ export default function PlayGround() {
                     </div>
                   </div>
                 </div>
-              ) : null
-            )}
-            {rightAnswer !== "" ? <Message text={rightAnswer} /> : null}
-          </div>
-        </div>
-        <div
-          className="relative flex items-center 
-        justify-center h-[43rem]  overflow-hidden rounded-3xl border-2 border-black py-2 px-4 border-b-4"
-        >
-          <video
-            className="absolute z-10 w-auto 
-            min-w-full min-h-full opacity-90"
-            src={videoBg}
-            autoPlay="true"
-            loop="true"
-          />
+              </div>
+            ) : null
+          )}
+          {rightAnswer !== "" || count === 15 ? (
+            count < 15 ? (
+              <NextQuestion
+                text={rightAnswer}
+                onClick={() => {
+                  setCount(count + 1);
+                  setRightAnswer("");
+                  console.log(rightAnswer);
+                }}
+              />
+            ) : (
+              <Link
+                to="/game/finish"
+                className="flex items-center justify-center bg-blue-500 text-5xl text-white py-10 px-24 rounded"
+                style={{
+                  marginTop: "15rem",
+                  marginLeft: "20rem",
+                  marginRight: "20rem",
+                }}
+                onClick={test}
+              >
+                Finish
+              </Link>
+            )
+          ) : null}
         </div>
       </div>
     </>
