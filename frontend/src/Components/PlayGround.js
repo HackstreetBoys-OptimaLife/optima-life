@@ -4,30 +4,60 @@ import forestMusic from "../assets/mixkit-birds-in-forest-loop-1239.wav";
 import videoBg from "../assets/in-the-early-morning-forest-moewalls.com.mp4";
 import { useState } from "react";
 
-import data from '../questions.json';
+import data from "../questions.json";
 
-
-const checkAnswer = (data, option) => {
-  if (option === data.answer){
-    rightAnswer = data.correctResponse;
-    points += 10;
-  } else {
-    rightAnswer = data.correctResponse;
-    points += 1;
-  }
-};
-let points = 0; 
-
-let answer = ""; 
-let rightAnswer = "";
 export default function PlayGround() {
   const [play] = useSound(forestMusic, { volume: 0.25 });
-  const [count,setCount] = useState(1);
+  const [count, setCount] = useState(1);
+  const [points, setPoints] = useState(0);
+  const [rightAnswer, setRightAnswer] = useState("");
+  const [emotionalPoints, setEmotionalPoints] = useState(0);
+  const [mentalPoints, setMentalPoints] = useState(0);
+  const [socialPoints, setSocialPoints] = useState(0);
+  const [healthPoints, setHealthPoints] = useState(0);
 
-  const [showResultsCorrect, setShowResultCorrect] = useState(false);
-  const [showResultsIncorrect, setShowResultIncorrect] = useState(false);
+  const setStatPoints = (point, category) => {
+    switch (category) {
+      case "EH":
+        setEmotionalPoints(emotionalPoints + point);
+        break;
+      case "MH":
+        setMentalPoints(mentalPoints + point);
+        break;
+      case "SH":
+        setSocialPoints(socialPoints + point);
+        break;
+      case "HH":
+        setHealthPoints(healthPoints + point);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const checkAnswer = (data, option) => {
+    const category = data.category;
+    if (option === data.answer) {
+      setRightAnswer(data.correctResponse);
+      setStatPoints(1, category);
+      setPoints(points + 20);
+    } else {
+      setRightAnswer(data.incorrectResponse);
+      setStatPoints(0, category);
+      setPoints(points + 5);
+    }
+  };
+
+  const test = () => {
+    console.log("P: " + points);
+    console.log("MP: " + mentalPoints);
+    console.log("EP: " + emotionalPoints);
+    console.log("HP: " + healthPoints);
+    console.log("SP: " + socialPoints);
+  };
+
   return (
-      <>
+    <>
       <div className="mx-auto max-w-7xl py-5 pt-8">
         <div className="absolute z-20 ">
           <button className="p-4 text-gray-300" onClick={play}>
@@ -47,52 +77,46 @@ export default function PlayGround() {
             </svg>
           </button>
           <div className="p-8 space-y-2 relative h-[38rem] overflow-scroll overflow-x-auto overflow-y-auto ">
-            {
-            
-            data.map((d) => (
-                    count === d.id ? <Message text={d.question}/> : null  
-                  
-            ))}
+            {data.map((d) =>
+              count === d.id ? <Message text={d.question} /> : null
+            )}
 
-            {  data.map((d) => (
-                    count === d.id ? 
-                  
-            <div key={d.id} className="flex items-center justify-start flex-row-reverse">
-              <img
-              alt=""
-                className="flex items-center justify-center h-10 w-10 rounded-full"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              />
-              <div className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
-                <div className="flex space-x-5">
-                  <button 
-                  className="bg-green-500 hover:bg-green-400 text-white font-bold py-10 px-24 border-b-4 border-green-700 hover:border-green-500 rounded-full"
-                  onClick={()=>{
-                    // setCount(count + 1);
-                    answer = d.options[0];
-                    checkAnswer(d, answer);
-                    setShowResultCorrect(!showResultsCorrect);
-                  }}
-                  >
-                    {d.options[0]}
-                  </button>
-                  <button 
-                  className="bg-red-500 hover:bg-red-400 text-white font-bold py-10 px-24 border-b-4 border-red-700 hover:border-red-500 rounded-full"
-                  onClick={()=>{
-                    setShowResultIncorrect(!showResultsIncorrect);
-                    answer = d.options[1];
-                    checkAnswer(d, answer);
-                  }}
-                  >
-                     {d.options[1]}
-                  </button>
+            {data.map((d) =>
+              count === d.id ? (
+                <div
+                  key={d.id}
+                  className="flex items-center justify-start flex-row-reverse"
+                >
+                  <img
+                    alt=""
+                    className="flex items-center justify-center h-10 w-10 rounded-full"
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  />
+                  <div className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
+                    <div className="flex space-x-5">
+                      <button
+                        className="bg-green-500 hover:bg-green-400 text-white font-bold py-10 px-24 border-b-4 border-green-700 hover:border-green-500 rounded-full"
+                        onClick={() => {
+                          // setCount(count + 1);
+                          checkAnswer(d, d.options[0]);
+                        }}
+                      >
+                        {d.options[0]}
+                      </button>
+                      <button
+                        className="bg-red-500 hover:bg-red-400 text-white font-bold py-10 px-24 border-b-4 border-red-700 hover:border-red-500 rounded-full"
+                        onClick={() => {
+                          checkAnswer(d, d.options[1]);
+                        }}
+                      >
+                        {d.options[1]}
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-              : null   ))
-              }
-            {rightAnswer !== "" ?  <Message text={rightAnswer} /> : null}
-            
+              ) : null
+            )}
+            {rightAnswer !== "" ? <Message text={rightAnswer} /> : null}
           </div>
         </div>
         <div
