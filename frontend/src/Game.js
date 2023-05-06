@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './input.css';
 import HomeScreen from './HomeScreen';
 import FinalScreen from './FinalScreen';
+import PlayGround from './Components/PlayGround';
 
 function Game() {
   const [contacts, setContacts] = useState([]);
@@ -23,9 +24,9 @@ function Game() {
   }, []);
 
   return (
-    <div>
+    <div className="h-screen bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-amber-100 via-amber-100 to-gray-500">
       {/* { contacts.map(contact => <div className="font-bold p-4" key={contact.id}>{contact.name}</div>) } */}
-      <FinalScreen />
+      <PlayGround />
     </div>
   );
 }

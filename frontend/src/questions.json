@@ -1,0 +1,116 @@
+[
+  {
+    "id": 1,
+    "question": "What is your mood when you leave home?",
+    "category": "MH",
+    "options": ["Happy", "Frustrated"],
+    "answer": "Happy",
+    "correctResponse": "Nice to see that you are happy.",
+    "incorrectResponse": "Ooh..You are sad this morning."
+  },
+  {
+    "id": 2,
+    "question": "As you leave your place, you find out that your gardener forgot to mow the front yard that was due yesterday. How do you wanna deal with this situation?",
+    "category": "EH",
+    "options": ["Politely ask him to fix the lawn", "Scold him for not doing his job on time."],
+    "answer": "Politely ask him to fix the lawn",
+    "correctResponse": "Asking politely is a good thing to do.",
+    "incorrectResponse": "Ahh… you ruined your mood after this."
+  },
+  {
+    "question": "As soon as you enter the town's downtown, you find that your friends are gathered at a restaurant, but you were not invited to the gathering. What will you do?",
+    "category": "SH",
+    "options": ["Crash the gathering", "Continue the journey"],
+    "answer": "Continue the journey",
+    "correctResponse": "It's a good thing you didn't bother about them. Let's continue.",
+    "incorrectResponse": "Crashing a party is not the correct thing to do but it is your choice. Let's continue."
+  },
+  {
+    "question": "You walk ahead and come across an intersection. One way takes you to the town, and the other takes you to the forest. Where do you want to go from here?",
+    "category": "NA",
+    "options": ["Back in town", "Towards the forest"],
+    "answer": "Towards the forest",
+    "correctResponse": "You are in the forest following the dirt road that is taking you deep into the jungle.",
+    "incorrectResponse": "You are now back in town and heading toward your home."
+  },
+  {
+    "question": "You saw your friend camping in the jungle and having pizza for lunch. He notices you and offers a slice of pizza. What will you do at this point?",
+    "category": "HH",
+    "options": ["Have a slice of pizza", "Say no to the pizza"],
+    "answer": "Say no to the pizza",
+    "correctResponse": "Good, pizza is full of junk which will intern make you unhealthy.",
+    "incorrectResponse": "Pizza is not a healthy food item as it is full of junk that your body doesn't need."
+  },
+  {
+    "question": "You are at a crossroads. One way takes you back to the town, and another takes you deeper inside the forest. Where would you like to go?",
+    "category": "NA",
+    "options": ["Back to town", "Deeper in the forest"],
+    "answer": "Deeper in the forest",
+    "correctResponse": "You are now moving ahead deeper into the forest following the dirt road.",
+    "incorrectResponse": "You are now back in town and heading toward your home."
+  },
+  {
+    "question": "You walk deep into the forest. You meet a stranger who is cooking a stew using the Moose that he just captured. Would you like to communicate with the stranger to know more about how to hunt animals?",
+    "category": "SH",
+    "options": ["Talk to the stranger", "Keep on walking"],
+    "answer": "Talk to the stranger",
+    "correctResponse": "You had a deep conversation with the stranger whose name is Andrew, and he regularly hunts to provide for his family. He tells you very interesting facts about hunting, and coincidentally he is also from Havenhill.",
+    "incorrectResponse": "You missed an opportunity to learn more about hunting."
+  },
+  {
+  "question": "Andrew's stew is ready, and he offers you a bowl of freshly cooked stew. Would you like to have some?",
+  "category": "HH",
+  "options": ["Yes, sure", "Eww.. I hate stews"],
+  "answer": "Yes, sure",
+  "correctResponse": "After enjoying a fresh and tasty stew, you decide to leave.",
+  "incorrectResponse": "You denied a fresh and tasty stew and decided to move ahead."
+  },
+  {
+  "question": "You proceed forward to get back to town. The two paths you come across both take the same time. Which path would you choose?",
+  "category": "HH",
+  "options": ["Path which is easy to walk", "Path with a little bit of hiking"],
+  "answer": "Path with a little bit of hiking",
+  "correctResponse": "Hiking is good for health, different exercises are really healthy for your body in the longer run.",
+  "incorrectResponse": "Oh.. the path that is easy to walk sounds good but not a healthier choice as more exercise makes you healthy."
+  },
+  {
+  "question": "While your way back home, you are hiking on a small hill, and you find your friend Isabella is picking wild berries. She offers you some berries. What would you like to do?",
+  "category": "HH",
+  "options": ["Denies eating the berries", "Accepts the generous offer and eats the berries"],
+  "answer": "Accepts the generous offer and eats the berries",
+  "correctResponse": "Berries are a healthy item to eat as it provides your body with the vitamins and fibers.",
+  "incorrectResponse": "You missed an opportunity to eat healthy berries."
+  },
+  {
+  "question": "You reach the top of the hill and hike a little off track to go to a beautiful spot to check out the evening setting sun. You reach the spot and find that one stranger who was trying his mountain climbing skill is stuck. He notices you and asks for help. What would you do?",
+  "category": "HH",
+  "options": ["Ask him and help him if needed", "Leave him there and get out of the scene"],
+  "answer": "Ask him and help him if needed",
+  "correctResponse": "That's great that you helped this stranger who is a rookie mountain climber.",
+  "incorrectResponse": "Running away from a situation like this is not good for your mental health."
+  },
+  {
+    "question": "Now you are hiking back the hill, and you are back in the town. You took a route via a back alley where you saw your friend's family enjoying the pleasant evening in their huge backyard. What are you feeling right now?",
+    "category": "MH",
+    "options": ["You're feeling left out", "You're feeling content"],
+    "answer": "You're feeling content",
+    "correctResponse": "Great! Feeling content is a wonderful emotion to experience.",
+    "incorrectResponse": "I'm sorry to hear that you're feeling left out. Maybe next time, you can join your friend's family for a pleasant evening in their backyard."
+  },
+  {
+    "question": "You proceed towards your place and reach home. You see, the yard that was a mess in the morning is now nice and clean. What will you do here?",
+    "category": "EH",
+    "options": ["Call the gardener and thank him for finishing the job", "Leave it and go inside the house."],
+    "answer": "Call the gardener and thank him for finishing the job",
+    "correctResponse": "That's a great idea! Showing appreciation for someone's hard work can make their day.",
+    "incorrectResponse": "It's always a good idea to show appreciation for someone's hard work. Maybe next time, you can call the gardener and thank him for his efforts."
+  },
+  {
+    "question": "You see that your partner is getting ready to prepare supper. She asks you what to cook. Which option will you select?",
+    "category": "HH",
+    "options": ["Quinoa with Elk Stew", "Mac and Cheese"],
+    "answer": "Quinoa with Elk Stew",
+    "correctResponse": "Good choice! Quinoa with Elk Stew is a healthy and delicious option for dinner.",
+    "incorrectResponse": "Mac and Cheese is not a healthy option for dinner. Maybe next time, you can try something more nutritious."
+  }
+]
