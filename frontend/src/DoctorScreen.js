@@ -18,7 +18,8 @@ import GenerateToken from './GenerateToken';
 import UpdateHealth from './UpdateHealth';
 import PatientSearch from './PatientSearch';
 import PatientOptions from './PatientOptions';
-
+import Stac from "./assets/Stac.jpg"
+import Stac2 from "./assets/Stac2.jpg"
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
   { name: 'Search patient', href: '/home/patient-search', icon: UsersIcon, current: false },
@@ -289,6 +290,10 @@ export default function Home() {
 
           <main className="py-10">
             <div className="px-4 sm:px-6 lg:px-8">
+               <div className='flex gap-4'> 
+                <img alt='' className='border border-gray-400 rounded-lg w-1/2' src={Stac} />
+                <img alt='' className='border border-gray-400 rounded-lg w-1/2' src={Stac2}/>
+                </div>
             </div>
           </main>
         </div>

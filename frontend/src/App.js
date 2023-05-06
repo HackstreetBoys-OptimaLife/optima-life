@@ -3,6 +3,7 @@ import Home from './Home';
 import Game from './Game';
 import HomeScreen from './HomeScreen';
 import FinalScreen from './FinalScreen';
+import DoctorScreen from './DoctorScreen';
 
 export default function App() {
   return (
@@ -19,6 +20,9 @@ export default function App() {
         </Route>
         <Route path="/home">
           <Home />
+        </Route>
+        <Route path="/doctor">
+          <DoctorScreen />
         </Route>
       </Switch>
     </Router>

@@ -1,5 +1,4 @@
 import React from "react";
-import HardCoded from "./Components/MyArray"
 import MyArray from "./Components/MyArray";
 
 const FinalScreen = (props) => {
