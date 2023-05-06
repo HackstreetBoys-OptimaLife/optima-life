@@ -11,10 +11,6 @@ const PlayerSchema = new mongoose.Schema(
         type: Number,
         default:0
       },
-      emStatus: {
-        type: Number,
-        default:0
-      },
       mhStatus: {
         type: Number,
         default:0

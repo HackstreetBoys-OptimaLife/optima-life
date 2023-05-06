@@ -11,6 +11,7 @@
   "author": "Hackstreet Team",
   "license": "MIT",
   "dependencies": {
+    "chart.js": "^4.3.0",
     "concurrently": "^8.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

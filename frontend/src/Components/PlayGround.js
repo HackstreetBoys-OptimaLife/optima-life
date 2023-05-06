@@ -1,11 +1,14 @@
 import Message from "./Message";
 import videoBg from "../assets/in-the-early-morning-forest-moewalls.com.mp4";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import data from "../questions.json";
 import NextQuestion from "./NextQuestion";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import HardCode from "./MyArray";
+import MyArray from "./MyArray";
 
-export default function PlayGround({ patient }) {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default function ({ patient }) {
   const [count, setCount] = useState(1);
   const [points, setPoints] = useState(0);
   const [rightAnswer, setRightAnswer] = useState("");
@@ -52,12 +55,38 @@ export default function PlayGround({ patient }) {
   };
 
   const test = async () => {
-    console.log("P: " + points);
-    console.log("MP: " + mentalPoints);
-    console.log("EP: " + emotionalPoints);
-    console.log("HP: " + healthPoints);
-    console.log("SP: " + socialPoints);
-    
+    let average = (mentalPoints+ emotionalPoints+healthPoints+socialPoints) /4;
+    MyArray.push(points)
+    const data = {
+      patientId: patient._id.toString(),
+      "score" :points,
+      "ehStatus": emotionalPoints,
+      "mhStatus": mentalPoints,
+      "shStatus": socialPoints,
+      "averagePoints": average,
+      "bankPoints": 0,
+      redeemPoints: 0
+    };
+    console.log(data);
+    const result = await postData('http://localhost:8080/api/v1/players', data);
+    console.log(result);
+    async function postData(url = '', data = {}) {
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+        const responseData = await response.json();
+        return responseData;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  
+
   };
 
   return (

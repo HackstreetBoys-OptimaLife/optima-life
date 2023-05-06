@@ -10,6 +10,7 @@ if(process.env.NODE_ENV !== 'test') {
 }
 
 const patients = require('./routes/patients');
+const players = require('./routes/players');
 
 const corsOptions = {
   origin: '*',
@@ -24,5 +25,6 @@ app.use(express.json());
 app.use(express.static('frontend'))
 
 app.use('/api/v1/patients', patients);
+app.use('/api/v1/players', players);
 
 module.exports = app;

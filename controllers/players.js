@@ -27,6 +27,7 @@ exports.getPlayerByUuid = async (req, res, _next) => {
 };
 
 exports.createPlayer = async (req, res, _next) => {
+  console.log("player", req.body);
   const { patientId } = req.body;
 
   try {

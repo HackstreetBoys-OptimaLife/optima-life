@@ -1,12 +1,14 @@
 import React from "react";
+import HardCoded from "./Components/MyArray"
+import MyArray from "./Components/MyArray";
 
 const FinalScreen = (props) => {
     return<>
         <div className="mx-auto h-screen">
             <div className="place-content-center bg-[url('./assets/homescreen.jpg')] bg-cover bg-no-repeat">
                 <div className="flex flex-col items-center justify-center h-screen">
-                    <h1 className="text-8xl font-bold mb-8 text-white">Your Final Score is ready!!!</h1>
-                    <h2 className="text-5xl font-bold mb-8 text-white">Points: {props.score != null ? props.score : 0}</h2>
+                   <h1 className="text-8xl font-bold mb-8 text-white">Your Final Score is ready!!!</h1>
+                    <h2 className="text-5xl font-bold mb-8 text-white">Points: {MyArray[MyArray.length -1]}</h2>
                     <div className="mt-8">
                         <div className="grid grid-cols-2 gap-52">
                             <button 
