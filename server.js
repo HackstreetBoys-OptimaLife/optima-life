@@ -11,7 +11,7 @@ if(process.env.NODE_ENV !== 'test') {
 
 const registrations = require('./routes/registrations');
 const authentications = require('./routes/authentications');
-const records = require('./routes/records');
+const patients = require('./routes/patients');
 
 const corsOptions = {
   origin: '*',
@@ -27,6 +27,6 @@ app.use(express.static('frontend'))
 
 app.use('/api/v1/registration', registrations);
 app.use('/api/v1/authentication', authentications);
-app.use('/api/v1/records', records);
+app.use('/api/v1/patients', patients);
 
 module.exports = app;

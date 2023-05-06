@@ -13,22 +13,21 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Test from './Test';
+import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
+import GenerateToken from './GenerateToken';
+import UpdateHealth from './UpdateHealth';
+import PatientSearch from './PatientSearch';
+import PatientOptions from './PatientOptions';
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
+  { name: 'Search patient', href: '/home/patient-search', icon: UsersIcon, current: false },
+  { name: 'Appointments', href: '#', icon: FolderIcon, current: false },
   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
   { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
 ]
-const teams = [
-  { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-  { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
-]
+
 const userNavigation = [
   { name: 'Your profile', href: '#' },
   { name: 'Sign out', href: '#' },
@@ -40,6 +39,7 @@ function classNames(...classes) {
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const history = useHistory();
 
   return (
     <Router>
@@ -102,6 +102,10 @@ export default function Home() {
                               <li key={item.name}>
                                 <a
                                   href={item.href}
+                                  onClick={()=> {
+                                    item.current = true
+                                    history.push(item.href);
+                                  }}
                                   className={classNames(
                                     item.current
                                       ? 'bg-indigo-700 text-white'
@@ -117,29 +121,6 @@ export default function Home() {
                                     aria-hidden="true"
                                   />
                                   {item.name}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </li>
-                        <li>
-                          <div className="text-xs font-semibold leading-6 text-indigo-200">Your teams</div>
-                          <ul role="list" className="-mx-2 mt-2 space-y-1">
-                            {teams.map((team) => (
-                              <li key={team.name}>
-                                <a
-                                  href={team.href}
-                                  className={classNames(
-                                    team.current
-                                      ? 'bg-indigo-700 text-white'
-                                      : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
-                                    'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                                  )}
-                                >
-                                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
-                                    {team.initial}
-                                  </span>
-                                  <span className="truncate">{team.name}</span>
                                 </a>
                               </li>
                             ))}
@@ -200,29 +181,6 @@ export default function Home() {
                             aria-hidden="true"
                           />
                           {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-                <li>
-                  <div className="text-xs font-semibold leading-6 text-indigo-200">Your teams</div>
-                  <ul role="list" className="-mx-2 mt-2 space-y-1">
-                    {teams.map((team) => (
-                      <li key={team.name}>
-                        <a
-                          href={team.href}
-                          className={classNames(
-                            team.current
-                              ? 'bg-indigo-700 text-white'
-                              : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
-                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                          )}
-                        >
-                          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
-                            {team.initial}
-                          </span>
-                          <span className="truncate">{team.name}</span>
                         </a>
                       </li>
                     ))}
@@ -292,7 +250,7 @@ export default function Home() {
                     />
                     <span className="hidden lg:flex lg:items-center">
                       <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
-                        Tom Cook
+                        John Valle
                       </span>
                       <ChevronDownIcon className="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
                     </span>
@@ -332,9 +290,10 @@ export default function Home() {
           <main className="py-10">
             <div className="px-4 sm:px-6 lg:px-8">
               <Switch>
-                <Route path="/home/start">
-                  <Test />
-                </Route>
+                <Route path="/home/generate-token/:id"><GenerateToken /></Route>
+                <Route path="/home/update-health/:id"><UpdateHealth /></Route>
+                <Route path="/home/patient-search"><PatientSearch /></Route>
+                <Route path="/home/patient-options/:id"><PatientOptions /></Route>
               </Switch>
             </div>
           </main>
