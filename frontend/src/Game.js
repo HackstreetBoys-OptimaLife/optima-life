@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import './input.css';
+import HomeScreen from './HomeScreen';
+import FinalScreen from './FinalScreen';
 
 function Game() {
   const [contacts, setContacts] = useState([]);
@@ -21,7 +24,8 @@ function Game() {
 
   return (
     <div>
-      { contacts.map(contact => <div className="font-bold p-4" key={contact.id}>{contact.name}</div>) }
+      {/* { contacts.map(contact => <div className="font-bold p-4" key={contact.id}>{contact.name}</div>) } */}
+      <FinalScreen />
     </div>
   );
 }
